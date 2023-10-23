@@ -1,44 +1,20 @@
 package project.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import project.dao.UserDAO;
 import project.entities.User;
 
 import java.util.List;
 
-@Service
-public class UserService {
-    private UserDAO userDAO;
+public interface UserService {
 
-    @Autowired
-    public UserService(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+    List<User> getAllUsers();
 
-    @Transactional(readOnly = true)
-    public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
-    }
+    User getUserById(int id);
 
-    @Transactional(readOnly = true)
-    public User getUserById(int id) {
-        return userDAO.getUserById(id);
-    }
 
-    @Transactional
-    public void removeUser(User user) {
-        userDAO.removeUser(user);
-    }
+    void removeUser(User user);
 
-    @Transactional
-    public void updateUser(User user) {
-        userDAO.updateUser(user);
-    }
+    void updateUser(User user);
 
-    @Transactional
-    public void addUser(User user) {
-        userDAO.addUser(user);
-    }
+    void addUser(User user);
+
 }
